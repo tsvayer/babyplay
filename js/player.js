@@ -11,7 +11,6 @@ class BabyPlayer {
     this.touchBlocker = document.getElementById('touch-blocker');
     this.startScreen = document.getElementById('start-screen');
     this.playerContainer = document.getElementById('player-container');
-    this.fullscreenButton = document.getElementById('fullscreen-button');
     this.loading = document.getElementById('loading');
     this.startButton = document.getElementById('start-button');
     
@@ -37,13 +36,12 @@ class BabyPlayer {
       console.log(`Loaded ${this.videos.length} videos`);
     } catch (error) {
       console.error('Failed to load videos.json:', error);
-      // Fallback to empty array - will show error state
       this.videos = [];
     }
   }
 
   setupEventListeners() {
-    // Start button
+    // Start button - this user interaction enables autoplay and fullscreen
     this.startButton.addEventListener('click', () => this.start());
     
     // Video events
@@ -52,9 +50,6 @@ class BabyPlayer {
     this.video.addEventListener('waiting', () => this.showLoading());
     this.video.addEventListener('playing', () => this.hideLoading());
     this.video.addEventListener('canplay', () => this.hideLoading());
-    
-    // Fullscreen button
-    this.fullscreenButton.addEventListener('click', () => this.enterFullscreen());
     
     // Handle fullscreen changes
     document.addEventListener('fullscreenchange', () => this.onFullscreenChange());
@@ -97,8 +92,8 @@ class BabyPlayer {
     this.startScreen.classList.add('hidden');
     this.playerContainer.classList.remove('hidden');
     
-    // Show fullscreen button
-    this.fullscreenButton.classList.remove('hidden');
+    // Enter fullscreen immediately (user just clicked, so this is allowed)
+    this.enterFullscreen();
     
     // Start playing
     this.playNextVideo();
@@ -122,17 +117,14 @@ class BabyPlayer {
       }
     }
 
-    // Fallback to last video
     return this.videos[this.videos.length - 1];
   }
 
   playNextVideo() {
-    // Select a random video (different from current if possible)
     let nextVideo = this.selectRandomVideo();
     
-    // Try to avoid playing the same video twice in a row (if we have multiple videos)
+    // Try to avoid playing the same video twice in a row
     if (this.videos.length > 1 && this.currentVideo && nextVideo.url === this.currentVideo.url) {
-      // Try up to 3 times to get a different video
       for (let i = 0; i < 3; i++) {
         nextVideo = this.selectRandomVideo();
         if (nextVideo.url !== this.currentVideo.url) break;
@@ -149,7 +141,6 @@ class BabyPlayer {
     this.showLoading();
     this.video.src = videoData.url;
     
-    // Attempt to play
     const playPromise = this.video.play();
     
     if (playPromise !== undefined) {
@@ -161,7 +152,7 @@ class BabyPlayer {
         .catch(error => {
           console.error('Autoplay failed:', error);
           // On iOS, autoplay with sound requires user interaction
-          // The video will be muted and we'll show a message
+          // Try muted first, then show unmute hint
           this.video.muted = true;
           this.video.play().catch(e => {
             console.error('Even muted playback failed:', e);
@@ -172,7 +163,6 @@ class BabyPlayer {
 
   handleVideoError(e) {
     console.error('Video error:', e);
-    // Skip to next video after a short delay
     setTimeout(() => this.playNextVideo(), 2000);
   }
 
@@ -187,28 +177,25 @@ class BabyPlayer {
   enterFullscreen() {
     const container = this.playerContainer;
     
+    // Try standard fullscreen API first
     if (container.requestFullscreen) {
-      container.requestFullscreen();
+      container.requestFullscreen().catch(err => {
+        console.log('Fullscreen request failed:', err);
+      });
     } else if (container.webkitRequestFullscreen) {
-      // Safari/iOS
+      // Safari
       container.webkitRequestFullscreen();
-    } else if (this.video.webkitEnterFullscreen) {
-      // iOS video-specific fullscreen
-      this.video.webkitEnterFullscreen();
+    } else if (document.documentElement.webkitRequestFullscreen) {
+      // Fallback: fullscreen the whole document
+      document.documentElement.webkitRequestFullscreen();
     }
+    // Note: On iPad Safari in standalone mode (Add to Home Screen), 
+    // the app is already fullscreen, so this may not be needed
   }
 
   onFullscreenChange() {
     const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
-    
-    if (isFullscreen) {
-      // Hide fullscreen button when in fullscreen
-      this.fullscreenButton.classList.add('hidden');
-    } else {
-      // Show fullscreen button when exiting fullscreen
-      // This gives parent a chance to re-enter fullscreen
-      this.fullscreenButton.classList.remove('hidden');
-    }
+    console.log('Fullscreen changed:', isFullscreen ? 'entered' : 'exited');
   }
 }
 

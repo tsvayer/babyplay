@@ -1,18 +1,18 @@
 {
   "videos": [
     {
-      "url": "https://pub-XXXXX.r2.dev/sample-video-1.mp4",
-      "title": "Sample Video 1",
+      "url": "media/Emergency! Doctor is Here to H.mp4",
+      "title": "Emergency Doctor",
       "weight": 3
     },
     {
-      "url": "https://pub-XXXXX.r2.dev/sample-video-2.mp4",
-      "title": "Sample Video 2",
+      "url": "media/The Bread - Animated Short Fil.mp4",
+      "title": "The Bread",
       "weight": 2
     },
     {
-      "url": "https://pub-XXXXX.r2.dev/sample-video-3.mp4",
-      "title": "Sample Video 3",
+      "url": "media/Toast - Animated Short Film by.mp4",
+      "title": "Toast",
       "weight": 1
     }
   ]

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="BabyPlay">
@@ -17,9 +18,9 @@
     <div class="start-content">
       <h1>🎬 BabyPlay</h1>
       <p>Baby-proof video player</p>
-      <button id="start-button">▶ Start Playing</button>
-      <p class="hint">Tap to start, then go fullscreen for best experience</p>
-      <p class="hint">To exit: swipe up from bottom (iPad) or press Home</p>
+      <button id="start-button">▶ Start Playing (Fullscreen)</button>
+      <p class="hint">For best experience on iPad: tap Share → Add to Home Screen</p>
+      <p class="hint">To exit: swipe up from bottom or press Home</p>
     </div>
   </div>
 
@@ -30,9 +31,6 @@
     
     <!-- Touch blocking overlay - prevents all interactions -->
     <div id="touch-blocker"></div>
-    
-    <!-- Fullscreen button - only visible briefly -->
-    <button id="fullscreen-button" class="hidden">⛶ Go Fullscreen</button>
     
     <!-- Loading indicator -->
     <div id="loading" class="hidden">
