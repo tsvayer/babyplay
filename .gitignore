@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Video files (stored in R2, not git)
+media/*.mp4
+media/*.webm
+media/*.mov
+media/*.avi
+media/*.mkv
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Wrangler
+.wrangler/

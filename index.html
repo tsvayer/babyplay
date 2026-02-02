@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BabyPlay">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  <title>BabyPlay</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Start Screen - visible before baby mode -->
+  <div id="start-screen">
+    <div class="start-content">
+      <h1>🎬 BabyPlay</h1>
+      <p>Baby-proof video player</p>
+      <button id="start-button">▶ Start Playing</button>
+      <p class="hint">Tap to start, then go fullscreen for best experience</p>
+      <p class="hint">To exit: swipe up from bottom (iPad) or press Home</p>
+    </div>
+  </div>
+
+  <!-- Video Player Container -->
+  <div id="player-container" class="hidden">
+    <!-- The actual video element -->
+    <video id="video-player" playsinline></video>
+    
+    <!-- Touch blocking overlay - prevents all interactions -->
+    <div id="touch-blocker"></div>
+    
+    <!-- Fullscreen button - only visible briefly -->
+    <button id="fullscreen-button" class="hidden">⛶ Go Fullscreen</button>
+    
+    <!-- Loading indicator -->
+    <div id="loading" class="hidden">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <script src="js/player.js"></script>
+</body>
+</html>
