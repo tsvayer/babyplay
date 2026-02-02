@@ -1,18 +1,23 @@
 {
   "videos": [
     {
-      "url": "media/Emergency! Doctor is Here to H.mp4",
-      "title": "Emergency Doctor",
-      "weight": 3
+      "url": "media/Домовенок Кузя. Фильм 1. Дом для Кузьки (1986).mp4",
+      "title": "Домовенок Кузя - Фильм 1: Дом для Кузьки",
+      "weight": 1
     },
     {
-      "url": "media/The Bread - Animated Short Fil.mp4",
-      "title": "The Bread",
-      "weight": 2
+      "url": "media/Домовенок Кузя. Фильм 2. Приключения домовенка (19.mp4",
+      "title": "Домовенок Кузя - Фильм 2: Приключения домовенка",
+      "weight": 1
     },
     {
-      "url": "media/Toast - Animated Short Film by.mp4",
-      "title": "Toast",
+      "url": "media/Домовенок Кузя. Фильм 3： Сказка для Наташи (Domove.mp4",
+      "title": "Домовенок Кузя - Фильм 3: Сказка для Наташи",
+      "weight": 1
+    },
+    {
+      "url": "media/Домовенок Кузя. Мультфильм. Серия 4. Возвращение д.mp4",
+      "title": "Домовенок Кузя - Фильм 4: Возвращение домовенка",
       "weight": 1
     }
   ]
