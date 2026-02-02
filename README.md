@@ -2,7 +2,7 @@
 
 A baby-proof video player for iPad. Select videos from a tile view, then play with all touch interactions blocked, so your baby can watch without accidentally changing videos.
 
-**Live at: https://babyplay.tsvayer.com**
+**Live at: https://babyplay.pages.dev**
 
 ## Features
 
@@ -17,7 +17,7 @@ A baby-proof video player for iPad. Select videos from a tile view, then play wi
 
 ## Usage
 
-1. Open https://babyplay.tsvayer.com on iPad Safari
+1. Open https://babyplay.pages.dev on iPad Safari
 2. **Select videos** by tapping tiles (numbers show play order)
 3. Tap **"Play Selected"** or **"Play All"**
 4. Hand iPad to baby - all touches are blocked!
