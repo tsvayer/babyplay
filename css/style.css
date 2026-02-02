@@ -8,75 +8,151 @@
 html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   background: #000;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  /* Prevent any text selection */
   -webkit-user-select: none;
   user-select: none;
-  /* Prevent callout on long press (iOS) */
   -webkit-touch-callout: none;
-  /* Prevent pull-to-refresh and overscroll */
   overscroll-behavior: none;
 }
 
-/* Start Screen */
-#start-screen {
+/* Tile View - Video Selection Screen */
+#tile-view {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   z-index: 1000;
 }
 
-#start-screen.hidden {
+#tile-view.hidden {
   display: none;
 }
 
-.start-content {
+.tile-header {
+  padding: 1rem;
   text-align: center;
   color: white;
-  padding: 2rem;
+  flex-shrink: 0;
 }
 
-.start-content h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
+.tile-header h1 {
+  font-size: 1.8rem;
 }
 
-.start-content p {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  opacity: 0.9;
+/* Tile Grid */
+#tile-grid {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  align-content: start;
+  -webkit-overflow-scrolling: touch;
 }
 
-.start-content .hint {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin-top: 1.5rem;
+/* Individual Tile */
+.video-tile {
+  position: relative;
+  background: #2a2a4a;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  aspect-ratio: 16/9;
 }
 
-#start-button {
-  background: white;
-  color: #764ba2;
+.video-tile:active {
+  transform: scale(0.98);
+}
+
+.video-tile.selected {
+  box-shadow: 0 0 0 4px #4ecdc4, 0 4px 20px rgba(78, 205, 196, 0.4);
+}
+
+.tile-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tile-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Selection Badge */
+.selection-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background: #4ecdc4;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a2e;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.video-tile.selected .selection-badge {
+  display: flex;
+}
+
+/* Footer with Action Buttons */
+.tile-footer {
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(0,0,0,0.3);
+}
+
+.tile-footer button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
   border: none;
-  padding: 1rem 3rem;
-  font-size: 1.5rem;
-  border-radius: 50px;
+  border-radius: 25px;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, opacity 0.2s;
 }
 
-#start-button:active {
+.tile-footer button:active {
   transform: scale(0.95);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#play-selected-btn {
+  background: #4ecdc4;
+  color: #1a1a2e;
+}
+
+#play-selected-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#play-all-btn {
+  background: #ff6b6b;
+  color: white;
 }
 
 /* Player Container */
@@ -104,7 +180,7 @@ html, body {
   background: #000;
 }
 
-/* Touch Blocking Overlay - THE KEY TO BABY-PROOFING */
+/* Touch Blocking Overlay */
 #touch-blocker {
   position: absolute;
   top: 0;
@@ -112,20 +188,13 @@ html, body {
   width: 100%;
   height: 100%;
   z-index: 100;
-  /* Transparent but captures all events */
   background: transparent;
-  /* Disable ALL touch actions */
   touch-action: none;
-  /* Ensure it receives pointer events */
   pointer-events: auto;
-  /* Prevent text selection */
   -webkit-user-select: none;
   user-select: none;
-  /* Prevent callout menu on iOS */
   -webkit-touch-callout: none;
 }
-
-/* Fullscreen Button - removed, auto-fullscreen on start */
 
 /* Loading Indicator */
 #loading {
@@ -155,6 +224,10 @@ html, body {
 
 /* Safe area insets for notched devices */
 @supports (padding: max(0px)) {
+  #tile-view {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
   #player-container {
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
