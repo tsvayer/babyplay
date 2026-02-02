@@ -1,23 +1,27 @@
 # 🎬 BabyPlay
 
-A baby-proof video player for iPad. Plays videos randomly with all touch interactions blocked, so your baby can watch without accidentally changing videos.
+A baby-proof video player for iPad. Select videos from a tile view, then play with all touch interactions blocked, so your baby can watch without accidentally changing videos.
 
-**Live at: https://babyplay.pages.dev**
+**Live at: https://babyplay.tsvayer.com**
 
 ## Features
 
-- ✅ **Baby-proof** - All touch interactions blocked (taps, swipes, gestures)
-- ✅ **Auto-fullscreen** - Enters fullscreen immediately on start
-- ✅ **Weighted random** - Configure favorite videos to play more often
+- ✅ **Tile View Selection** - Browse thumbnails, select videos in order
+- ✅ **Play Selected** - Videos play in the order you clicked them
+- ✅ **Play All** - Shuffle and play entire library
+- ✅ **Baby-proof** - All touch interactions blocked during playback
+- ✅ **Auto-fullscreen** - Enters fullscreen immediately on play
 - ✅ **Auto-advance** - Automatically plays next video when current one ends
+- ✅ **Return to selection** - Returns to tile view when playlist ends
 - ✅ **iPad optimized** - Works as a home screen app
 
 ## Usage
 
-1. Open https://babyplay.pages.dev on iPad Safari
-2. Tap **"Start Playing (Fullscreen)"**
-3. Hand iPad to baby - all touches are blocked!
-4. To exit: swipe up from bottom or press Home button
+1. Open https://babyplay.tsvayer.com on iPad Safari
+2. **Select videos** by tapping tiles (numbers show play order)
+3. Tap **"Play Selected"** or **"Play All"**
+4. Hand iPad to baby - all touches are blocked!
+5. To exit: swipe up from bottom or press Home button
 
 ### Add to Home Screen (Recommended)
 
@@ -34,7 +38,8 @@ Edit `videos.json` to customize the playlist:
 {
   "videos": [
     {
-      "url": "https://example.com/video1.mp4",
+      "url": "media/video1.mp4",
+      "thumbnail": "media/thumbnails/video1.jpg",
       "title": "Video Title",
       "weight": 1
     }
@@ -42,7 +47,20 @@ Edit `videos.json` to customize the playlist:
 }
 ```
 
-**Weight:** Videos with higher weights play more often. A video with `weight: 3` is 3x more likely to be selected than one with `weight: 1`.
+- **url:** Path to video file (relative or absolute)
+- **thumbnail:** Path to thumbnail image for tile view
+- **title:** Display name in tile view
+- **weight:** Videos with higher weights play more often in "Play All" mode
+
+### Generating Thumbnails
+
+Use the included script to generate thumbnails for new videos:
+
+```bash
+./scripts/generate-thumbnails.sh
+```
+
+Requires `ffmpeg`. Extracts a frame at 25% of video duration.
 
 ## Deployment
 
@@ -66,10 +84,14 @@ babyplay/
 ├── videos.json     # Video playlist configuration
 ├── manifest.json   # Web app manifest (for Add to Home Screen)
 ├── css/
-│   └── style.css   # Styles
+│   └── style.css   # Styles (tile view, player, buttons)
 ├── js/
-│   └── player.js   # Player logic
-└── media/          # Video files (optional, can use external URLs)
+│   └── player.js   # Player logic (selection, playback, fullscreen)
+├── scripts/
+│   └── generate-thumbnails.sh  # ffmpeg thumbnail generator
+└── media/
+    ├── *.mp4       # Video files
+    └── thumbnails/ # Generated thumbnails
 ```
 
 ## License
