@@ -1,22 +1,22 @@
 {
   "videos": [
     {
-      "url": "media/Домовенок Кузя. Фильм 1. Дом для Кузьки (1986).mp4",
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/Домовенок%20Кузя.%20Фильм%201.%20Дом%20для%20Кузьки%20(1986).mp4",
       "title": "Домовенок Кузя - Фильм 1: Дом для Кузьки",
       "weight": 1
     },
     {
-      "url": "media/Домовенок Кузя. Фильм 2. Приключения домовенка (19.mp4",
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/Домовенок%20Кузя.%20Фильм%202.%20Приключения%20домовенка%20(19.mp4",
       "title": "Домовенок Кузя - Фильм 2: Приключения домовенка",
       "weight": 1
     },
     {
-      "url": "media/Домовенок Кузя. Фильм 3： Сказка для Наташи (Domove.mp4",
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/Домовенок%20Кузя.%20Фильм%203：%20Сказка%20для%20Наташи%20(Domove.mp4",
       "title": "Домовенок Кузя - Фильм 3: Сказка для Наташи",
       "weight": 1
     },
     {
-      "url": "media/Домовенок Кузя. Мультфильм. Серия 4. Возвращение д.mp4",
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/Домовенок%20Кузя.%20Мультфильм.%20Серия%204.%20Возвращение%20д.mp4",
       "title": "Домовенок Кузя - Фильм 4: Возвращение домовенка",
       "weight": 1
     }
