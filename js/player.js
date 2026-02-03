@@ -218,20 +218,26 @@ class BabyPlayer {
   }
 
   onVideoEnded() {
+    if (!this.playMode) return;
     this.currentIndex++;
     this.playCurrentVideo();
   }
 
   handleVideoError(e) {
+    if (!this.playMode) return;
     console.error('Video error:', e);
     // Skip to next video after delay
     setTimeout(() => {
+      if (!this.playMode) return;
       this.currentIndex++;
       this.playCurrentVideo();
     }, 2000);
   }
 
   returnToTileView() {
+    // Clear play mode first to prevent error handlers from interfering
+    this.playMode = null;
+    
     // Exit fullscreen
     if (document.fullscreenElement || document.webkitFullscreenElement) {
       if (document.exitFullscreen) {
