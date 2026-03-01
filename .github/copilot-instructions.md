@@ -47,9 +47,11 @@ Use 480p max (suitable for mini iPad), output with YouTube ID as filename to avo
 cd media/
 yt-dlp --no-playlist --merge-output-format mp4 \
   --output "%(id)s.%(ext)s" \
-  -f "bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=480]+bestaudio/best[height<=480]/best" \
+  -f "bestvideo[height<=480][vcodec^=avc][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=480][vcodec^=avc]+bestaudio/bestvideo[height<=480]+bestaudio/best[height<=480]/best" \
   "https://youtu.be/VIDEO_ID"
 ```
+
+**IMPORTANT:** Always use `[vcodec^=avc]` to force H.264 video. AV1 is not supported on older iPads and causes videos to play without sound.
 
 To find episode IDs before downloading:
 ```bash
