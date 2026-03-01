@@ -60,12 +60,13 @@ html, body {
 /* Individual Tile */
 .video-tile {
   position: relative;
+  height: 0;
+  padding-bottom: 56.25%; /* 9/16 = 56.25% — forces 16:9 ratio in grid */
   background: #2a2a4a;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-  aspect-ratio: 16/9;
 }
 
 .video-tile:active {
@@ -77,6 +78,9 @@ html, body {
 }
 
 .tile-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
