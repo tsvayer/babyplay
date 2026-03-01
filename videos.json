@@ -191,6 +191,72 @@
       "thumbnail": "media/thumbnails/Кот Леопольд 11.jpg",
       "title": "Кот Леопольд 11: Автомобиль",
       "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%92%D0%BE%D0%BB%D0%BA%20%D0%B8%20%D1%82%D0%B5%D0%BB%D1%91%D0%BD%D0%BE%D0%BA.mp4",
+      "thumbnail": "media/thumbnails/Волк и телёнок.jpg",
+      "title": "Волк и телёнок",
+      "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%9C%D1%83%D0%BA-%D1%81%D0%BA%D0%BE%D1%80%D0%BE%D1%85%D0%BE%D0%B4.mp4",
+      "thumbnail": "media/thumbnails/Мук-скороход.jpg",
+      "title": "Мук-скороход",
+      "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%94%D0%B5%D0%B4%20%D0%9C%D0%BE%D1%80%D0%BE%D0%B7%20%D0%B8%20%D0%9B%D0%B5%D1%82%D0%BE.mp4",
+      "thumbnail": "media/thumbnails/Дед Мороз и Лето.jpg",
+      "title": "Дед Мороз и Лето",
+      "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%9F%D0%B8%D1%80%D0%BE%D0%B6%D0%BE%D0%BA.mp4",
+      "thumbnail": "media/thumbnails/Пирожок.jpg",
+      "title": "Пирожок",
+      "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%92%D0%BE%D0%BB%D0%BA%20%D0%B8%20%D1%81%D0%B5%D0%BC%D0%B5%D1%80%D0%BE%20%D0%BA%D0%BE%D0%B7%D0%BB%D1%8F%D1%82.mp4",
+      "thumbnail": "media/thumbnails/Волк и семеро козлят.jpg",
+      "title": "Волк и семеро козлят",
+      "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%9E%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%BE%D0%B1%D0%B5%D0%B7%D1%8C%D1%8F%D0%BD%D0%BA%D0%B8%201.mp4",
+      "thumbnail": "media/thumbnails/Осторожно обезьянки 1.jpg",
+      "title": "Осторожно обезьянки 1: Осторожно, обезьянки!",
+      "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%9E%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%BE%D0%B1%D0%B5%D0%B7%D1%8C%D1%8F%D0%BD%D0%BA%D0%B8%202.mp4",
+      "thumbnail": "media/thumbnails/Осторожно обезьянки 2.jpg",
+      "title": "Осторожно обезьянки 2: Гирлянда из малышей",
+      "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%9E%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%BE%D0%B1%D0%B5%D0%B7%D1%8C%D1%8F%D0%BD%D0%BA%D0%B8%203.mp4",
+      "thumbnail": "media/thumbnails/Осторожно обезьянки 3.jpg",
+      "title": "Осторожно обезьянки 3: Обезьянки, вперёд!",
+      "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%9E%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%BE%D0%B1%D0%B5%D0%B7%D1%8C%D1%8F%D0%BD%D0%BA%D0%B8%204.mp4",
+      "thumbnail": "media/thumbnails/Осторожно обезьянки 4.jpg",
+      "title": "Осторожно обезьянки 4: Как обезьянки обедали",
+      "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%9E%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%BE%D0%B1%D0%B5%D0%B7%D1%8C%D1%8F%D0%BD%D0%BA%D0%B8%205.mp4",
+      "thumbnail": "media/thumbnails/Осторожно обезьянки 5.jpg",
+      "title": "Осторожно обезьянки 5: В опере",
+      "weight": 1
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/%D0%9E%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%BE%D0%B1%D0%B5%D0%B7%D1%8C%D1%8F%D0%BD%D0%BA%D0%B8%206.mp4",
+      "thumbnail": "media/thumbnails/Осторожно обезьянки 6.jpg",
+      "title": "Осторожно обезьянки 6: Обезьянки и грабители",
+      "weight": 1
     }
   ]
 }

@@ -39,22 +39,89 @@ npx wrangler pages deploy /tmp/deploy --project-name=babyplay
 
 ## Adding New Videos
 
-1. Download video to `media/` folder
-2. Run `./scripts/generate-thumbnails.sh` (requires ffmpeg)
-3. Add entry to `videos.json` with GitHub raw URL for the video:
-   ```json
-   {
-     "url": "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/<url-encoded-filename>.mp4",
-     "thumbnail": "media/thumbnails/<filename>.jpg",
-     "title": "Display Title",
-     "weight": 1
-   }
-   ```
-4. Commit and push (so GitHub raw URLs work)
-5. Redeploy to Cloudflare Pages
+### Step 1 — Download with yt-dlp
+
+Use 480p max (suitable for mini iPad), output with YouTube ID as filename to avoid collisions:
+
+```bash
+cd media/
+yt-dlp --no-playlist --merge-output-format mp4 \
+  --output "%(id)s.%(ext)s" \
+  -f "bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=480]+bestaudio/best[height<=480]/best" \
+  "https://youtu.be/VIDEO_ID"
+```
+
+To find episode IDs before downloading:
+```bash
+yt-dlp --no-playlist --print "%(id)s %(duration)s %(title)s" "ytsearch5:Название мультфильма серия"
+```
+
+### Step 2 — Rename to short clean name
+
+```bash
+mv "VIDEO_ID.mp4" "Короткое название.mp4"
+```
+
+For files already tracked by git (e.g. renaming existing videos), use `git mv` so git tracks the rename and doesn't re-upload the binary:
+```bash
+git mv "media/Старое название.mp4" "media/Новое название.mp4"
+git mv "media/thumbnails/Старое название.jpg" "media/thumbnails/Новое название.jpg"
+```
+
+### Step 3 — Generate thumbnail
+
+```bash
+./scripts/generate-thumbnails.sh   # generates thumbnails for any .mp4 without one
+```
+
+### Step 4 — Add to videos.json
+
+Use Python to append entries (handles URL-encoding correctly):
+
+```python
+import json
+from urllib.parse import quote
+
+BASE = "https://raw.githubusercontent.com/tsvayer/babyplay/main/media/"
+
+def entry(filename, title, weight=1):
+    base = filename.replace(".mp4", "")
+    return {
+        "url": BASE + quote(filename),
+        "thumbnail": f"media/thumbnails/{base}.jpg",
+        "title": title,
+        "weight": weight
+    }
+
+with open("videos.json") as f:
+    data = json.load(f)
+
+data["videos"].append(entry("Новый мультфильм.mp4", "Новый мультфильм"))
+
+with open("videos.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+```
+
+### Step 5 — Commit, push, deploy
+
+```bash
+git add media/ videos.json
+git commit -m "Add <title>"
+git push origin main
+
+# Deploy (web assets only, no video files — they're served from GitHub)
+mkdir -p /tmp/deploy/media/thumbnails
+cp index.html videos.json manifest.json /tmp/deploy/
+cp -r css js /tmp/deploy/
+cp media/thumbnails/*.jpg /tmp/deploy/media/thumbnails/
+npx wrangler pages deploy /tmp/deploy --project-name=babyplay
+```
 
 ## Conventions
 
-- Video filenames often contain Cyrillic and special characters - must be URL-encoded in `videos.json` for GitHub raw URLs
-- Thumbnails use the same base filename as videos but with `.jpg` extension
+- **Short Cyrillic filenames** — keep filenames short and clean (e.g. `Кот Леопольд 1.mp4`, not the full YouTube title)
+- Video filenames are URL-encoded in `videos.json` for GitHub raw URLs — use `urllib.parse.quote` in Python
+- Thumbnails use the same base filename as the video but with `.jpg` extension
 - The `weight` field affects shuffle probability in "Play All" mode
+- Never commit `.part` or `.ytdl` files — clean up before committing: `rm -f media/*.part media/*.ytdl`
+- Videos are NOT committed to Cloudflare Pages (too large) — only thumbnails and web assets are deployed there; videos are served from GitHub raw URLs
